@@ -12,16 +12,19 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@storybook/cli": "^6.5.9",
+    "@storybook/cli": "5.3.21",
+    "@vue/compiler-sfc": "^3.2.37",
     "core-js": "^3.19.3",
     "nuxt": "^2.15.8",
     "vue": "^2.6.14",
+    "vue-loader": "15.9.8",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
     "vuetify": "^2.6.1",
     "webpack": "^4.46.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.5",
     "@nuxt/types": "^2.15.8",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/vuetify": "^1.12.3",
@@ -29,6 +32,7 @@
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",
     "@storybook/addon-links": "^6.5.9",
+    "@storybook/addons": "^6.5.9",
     "@storybook/builder-webpack4": "^6.5.9",
     "@storybook/manager-webpack4": "^6.5.9",
     "@storybook/testing-library": "^0.0.13",
@@ -37,6 +41,8 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^27.4.4",
     "babel-loader": "^8.2.5",
+    "babel-preset-vue": "^2.0.2",
+    "chromatic": "^6.6.3",
     "jest": "^27.4.4",
     "ts-jest": "^27.1.1",
     "vue-jest": "^3.0.4"
