@@ -1,24 +1,27 @@
 <template>
-  <div>
-    <button
-      class="base-button"
-      :class="[modifierClass, `button-size-${buttonSize}`]"
-      :disabled="isDisabled"
-      @click="onClick"
-    >
-     <slot />
-    </button>
-  </div>
+  <button
+    :id="modifierId"
+    class="base-button"
+    :class="[modifierClass, `button-size-${buttonSize}`]"
+    :disabled="isDisabled"
+    @click="onClick"
+  >
+    <slot />
+  </button>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@nuxtjs/composition-api'
+import { defineComponent, computed, PropType } from '@nuxtjs/composition-api'
 
 export default defineComponent ({
   name: 'BaseButton',
   props: {
     onClick: {
-      type: Function,
+      type: Function as PropType<() => void>,
+      require: true,
+    },
+    modifierId: {
+      type: String,
       require: true,
     },
     modifierClass: {

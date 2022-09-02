@@ -16,6 +16,7 @@ describe('BaseButton.vue', () => {
     // slotタグのテスト
     const wrapper = shallowMount(BaseButton, {
       propsData: {
+        modifierId: 'dummy_id',
         onClick: jest.fn(),
       },
       slots: {
@@ -28,16 +29,19 @@ describe('BaseButton.vue', () => {
     // ボタンクリックのテスト（活性時）
     const wrapper = shallowMount(BaseButton, {
       propsData: {
+        modifierId: 'dummy_id',
         onClick: jest.fn(),
       }
     })
-    wrapper.find('div > button').trigger('click')
+    wrapper.trigger('click')
     expect(wrapper.props().onClick).toBeCalled()
   }),
+  /*
   test('with parameter onclick test', () => {
-    // ボタンクリック時のコールバックテスト
+    // ボタンクリック時のコールバックテスト（引数/戻り値あり）
     const wrapper = shallowMount(BaseButton, {
       propsData: {
+        modifierId: 'dummy_id',
         onClick: jest.fn(),
       }
     })
@@ -46,15 +50,30 @@ describe('BaseButton.vue', () => {
     wrapper.find('div > button').trigger('click')
     expect(wrapper.props().onClick).toBeCalledWith('test')
   }),
+  */
+  test('onclick async/await action', () => {
+    // ボタンクリック時のコールバックテスト（引数あり/戻り値なし）
+    const wrapper = shallowMount(BaseButton, {
+      propsData: {
+        modifierId: 'dummy_id',
+        onClick: jest.fn(),
+      }
+    })
+    const fnc = (v: string): void => undefined
+    wrapper.props().onClick(fnc('test'))
+    wrapper.trigger('click')
+    expect(wrapper.props().onClick).toBeCalled()
+  }),
   test('disabled button', () => {
     // ボタン非活性状態の確認
     const wrapper = shallowMount(BaseButton, {
       propsData: {
+        modifierId: 'dummy_id',
         onClick: jest.fn(),
         isDisabled: true,
       }
     })
-    expect(wrapper.find('div > button').attributes().disabled).toBeDefined()
+    expect(wrapper.attributes().disabled).toBeDefined()
   }),
   test('disabled button onclick test', () => {
     // ボタン非活性時のボタン押下テスト
@@ -64,13 +83,24 @@ describe('BaseButton.vue', () => {
         isDisabled: true,
       }
     })
-    wrapper.find('div > button').trigger('click')
+    wrapper.trigger('click')
     expect(wrapper.props().onClick).not.toBeCalled()
+  }),
+  test('set modifier id', () => {
+    // 動的id要素の設定テスト
+    const wrapper = shallowMount(BaseButton, {
+      propsData: {
+        modifierId: 'dummy_id',
+        onClick: jest.fn(),
+      },
+    })
+    expect(wrapper.attributes().id).toBe('dummy_id')
   }),
   test('set modifier class', () => {
     // 動的class要素の設定テスト
     const wrapper = shallowMount(BaseButton, {
       propsData: {
+        modifierId: 'dummy_id',
         onClick: jest.fn(),
         modifierClass: 'dummy'
       },
@@ -98,17 +128,18 @@ describe('BaseButton.vue', () => {
      */
     // console.log(wrapper.find('div > button').classes())
     // expect(wrapper.element).toMatchSnapshot()
-    expect(wrapper.find('div > button').classes()).toContain('dummy')
+    expect(wrapper.classes()).toContain('dummy')
   }),
   test('set button size small', () => {
     // css用のclass要素の設定テスト
     const wrapper = shallowMount(BaseButton, {
       propsData: {
+        modifierId: 'dummy_id',
         onClick: jest.fn(),
         sizeSmall: true
       }
     })
     // expect(wrapper.element).toMatchSnapshot()
-    expect(wrapper.find('div > button').classes()).toContain('button-size-small')
+    expect(wrapper.classes()).toContain('button-size-small')
   })
 })
