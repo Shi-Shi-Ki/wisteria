@@ -1,4 +1,5 @@
 {
+  "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "target": "ES2018",
     "module": "ESNext",
@@ -15,24 +16,17 @@
     "noEmit": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
-    "paths": {
-      "~/*": [
-        "./components/*"
-      ],
-      "@/*": [
-        "./*"
-      ]
-    },
     "types": [
       "@nuxt/types",
       "@types/node",
       "@types/jest",
-      "@types/mocha"
+      "@types/mocha",
+      "vuetify",
+      "./types"
     ]
   },
   "exclude": [
     "node_modules",
-    ".nuxt",
     "dist"
   ]
 }

@@ -63,10 +63,10 @@ typings/
 .cache
 
 # next.js build output
-.next
+.next*
 
 # nuxt.js build output
-.nuxt
+.nuxt*
 
 # Nuxt generate
 dist
@@ -90,4 +90,7 @@ sw.*
 *.swp
 
 # test shapshot dir
-test/**/__snapshots__
+tests/**/__snapshots__
+
+# Nuxt output
+.output

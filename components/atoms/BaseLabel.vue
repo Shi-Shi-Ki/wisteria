@@ -1,18 +1,16 @@
 <template>
-  <button
+  <component
     :id="modifierId"
-    class="base-button"
-    :class="[modifierClass, `button-size-${buttonSize}`]"
-    :disabled="isDisabled"
-    @click="onClick"
-  >
-    <slot />
-  </button>
+    :is="tagName"
+    class="base-label"
+    :class="[modifierClass, `label-size-${labelSize}`]"
+    >{{ label }}
+  </component>
 </template>
 
 <script lang="ts">
 export default {
-  name: "BaseButton"
+  name: "BaseLabel"
 }
 </script>
 
@@ -21,26 +19,26 @@ import { SizeTypers } from '@nuxt/types'
 import { PropType } from "vue"
 
 const props = defineProps({
-  onClick: {
-    type: Function as PropType<() => void>,
-    require: true,
+  tagName: {
+    type: String,
+    default: 'p',
   },
   modifierId: {
     type: String,
     require: true,
   },
+  label: {
+    type: String,
+    default: '',
+  },
   modifierClass: {
     type: String,
     require: false,
-  },
-  isDisabled: {
-    type: Boolean,
-    default: false,
   },
   defineSize: {
     type: String as PropType<SizeTypers>,
   }
 })
 const nuxtApp = useNuxtApp()
-const buttonSize = nuxtApp.$getStyle(props.defineSize)
+const labelSize = nuxtApp.$getStyle(props.defineSize)
 </script>

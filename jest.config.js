@@ -2,7 +2,7 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
     '^~/(.*)$': '<rootDir>/components/$1',
-    '^vue$': 'vue/dist/vue.common.js'
+    '#app': '<rootDir>/node_modules/nuxt/dist/app/index.mjs'
   },
   moduleFileExtensions: [
     'ts',
@@ -13,12 +13,15 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
     '^.+\\.js$': 'babel-jest',
-    '.*\\.(vue)$': 'vue-jest'
+    '.*\\.(vue)$': '@vue/vue3-jest'
   },
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue'
+  ],
+  transformIgnorePatterns: [
+    "node_modules/(?!(nuxt|@nuxt))"
   ],
   testEnvironment: 'jsdom'
 }
